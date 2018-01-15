@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f92df90d91751993a20b3b4bc0ef1d1",
+    "content-hash": "cfe1f2feeca78b1edd735413e90d0de8",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -606,7 +606,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/doctrine-lexer-v1.0.1-20cd74.tar",
                 "reference": "d1ec545810553c0f5ed11140a3b5afa74a141459",
-                "shasum": "7eb1523b7c986ca670f590e14f3fa1a85884a955"
+                "shasum": "d0c3ed2af18e48da306ed14181b1dd1e5d1d1036"
             },
             "require": {
                 "php": ">=5.3.2"
@@ -649,29 +649,31 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v5.3.0",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "1f618aa161af6790c13a6e091fcf07b78196b383"
+                "reference": "449f746065931afe8b954fd8ca8911234e80f8fa"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/elasticsearch-elasticsearch-v5.3.0-51c82f.tar",
-                "reference": "1f618aa161af6790c13a6e091fcf07b78196b383",
-                "shasum": "6e65a5d6d2e47c081419a4373f50c15bf592fa12"
+                "url": "https://satis.sugardev.team/dist/elasticsearch/elasticsearch/elasticsearch-elasticsearch-v6.0.1-e1dbea.tar",
+                "reference": "449f746065931afe8b954fd8ca8911234e80f8fa",
+                "shasum": "4438613edb2789390008cb80f8861e28beaca370"
             },
             "require": {
+                "ext-json": ">=1.3.7",
                 "guzzlehttp/ringphp": "~1.0",
-                "php": "^5.6|^7.0",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
                 "cpliakas/git-wrapper": "~1.0",
                 "doctrine/inflector": "^1.1",
                 "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "^4.7|^5.4",
-                "sami/sami": "~3.2",
+                "phpstan/phpstan-shim": "0.8.3",
+                "phpunit/phpunit": "6.3.0",
+                "squizlabs/php_codesniffer": "3.0.2",
                 "symfony/finder": "^2.8",
                 "symfony/yaml": "^2.8"
             },
@@ -690,6 +692,15 @@
                     "Elasticsearch\\Tests\\": "tests/Elasticsearch/Tests/"
                 }
             },
+            "scripts": {
+                "phpcs": [
+                    "phpcs --standard=ruleset.xml --extensions=php --encoding=utf-8 --tab-width=4 -sp src",
+                    "phpcs --standard=ruleset.xml --extensions=php --encoding=utf-8 --tab-width=4 -sp tests"
+                ],
+                "phpstan": [
+                    "@php vendor/phpstan/phpstan-shim/phpstan.phar analyse -c phpstan.neon tests --level 7 --no-progress"
+                ]
+            },
             "license": [
                 "Apache-2.0"
             ],
@@ -704,7 +715,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2017-07-19T18:44:30+00:00"
+            "time": "2017-12-05T14:15:58+00:00"
         },
         {
             "name": "etechnika/idna-convert",
@@ -718,7 +729,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/etechnika-idna-convert-1.0.3-ae3a24.tar",
                 "reference": "85e488474269b19630ca4e711061e4aa61ac879a",
-                "shasum": "af77428108e7274c006dc0fa784f31024c49de5d"
+                "shasum": "e69c7b5e4a970e05db1f6293d5143a2464ecdb60"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -840,7 +851,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/google-apiclient-1.1.4-b0e5f5.tar",
                 "reference": "2adb5ba90612858d4add0342eee6b8b9aaca398d",
-                "shasum": "564bfd05c0c142ab194a6d0ee1a1d8f8bb39e85a"
+                "shasum": "092550b6121aed1795ede6c6d6e354c6cb5e38df"
             },
             "require": {
                 "php": ">=5.2.1"
@@ -1541,7 +1552,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/moontoast-math-1.1.0-234d74.tar",
                 "reference": "df98c89b919b71180560c7f5ef266ee1504f60b9",
-                "shasum": "a1ad3d09f2165e0557b173759f9e94ede525c86c"
+                "shasum": "fd97af756a57fc3e8252378764dcc20fe28e4d40"
             },
             "require": {
                 "ext-bcmath": "*",
@@ -1690,7 +1701,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/parsecsv-php-parsecsv-0.4.5-c0d74d.tar",
                 "reference": "0486a4bf3ef80dfa215f38f865ed8685fbb472c7",
-                "shasum": "79b1cbc63a5a16b8d4ec5bd497200bc2c9ef43d5"
+                "shasum": "13ccfa6fafe0a336c615347362680c23b2dbc9d3"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.1.*"
@@ -1975,7 +1986,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/psr-log-1.0.0-e71523.tar",
                 "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "shasum": "e8fd0dc32860b445d52991f2a07999dad372ffa4"
+                "shasum": "93e2546e57b9c28306eb0fce599fed484143c95b"
             },
             "type": "library",
             "autoload": {
@@ -2059,7 +2070,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/ramsey-uuid-2.9.0-0b3a5a.tar",
                 "reference": "b2ef4dd9584268d73f92f752a62bc24cd534dc9a",
-                "shasum": "716c94413900577fc0905acfeb3b8bce161b50c8"
+                "shasum": "fb2953922511f4b53b50540ff4516b7ed6e0fa7f"
             },
             "require": {
                 "paragonie/random_compat": "^1.0|^2.0",
@@ -2169,21 +2180,21 @@
         },
         {
             "name": "ruflin/elastica",
-            "version": "5.3.0",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica",
-                "reference": "6ca31124a7753edbe3cec0f7a0cb723829da57c5"
+                "reference": "0bd18985d5c6a2aaabfe23fda0b4839538b6f6d5"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/ruflin-elastica-5.3.0-373e79.tar",
-                "reference": "6ca31124a7753edbe3cec0f7a0cb723829da57c5",
-                "shasum": "032bc2a1dc65b275879d2043bf333254a334fd1a"
+                "url": "https://satis.sugardev.team/dist/ruflin/elastica/ruflin-elastica-6.0.1-835064.tar",
+                "reference": "0bd18985d5c6a2aaabfe23fda0b4839538b6f6d5",
+                "shasum": "825cbadef3a35b27c22f86c1e830be7092f74ec0"
             },
             "require": {
-                "elasticsearch/elasticsearch": "5.3.0",
-                "php": ">=5.6.0",
+                "elasticsearch/elasticsearch": "6.0.*",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
@@ -2199,7 +2210,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2.x-dev"
+                    "dev-master": "6.0.x-dev"
                 }
             },
             "autoload": {
@@ -2227,7 +2238,7 @@
                 "client",
                 "search"
             ],
-            "time": "2017-07-26T12:21:58+00:00"
+            "time": "2018-02-18T21:12:53+00:00"
         },
         {
             "name": "silex/silex",
@@ -3639,13 +3650,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-apcu.git",
-                "reference": "185a98de49caaa46fa9d5cf7c1090e89a07ba103"
+                "reference": "e8ae2136ddb53dea314df56fcd88e318ab936c00"
             },
             "dist": {
-                "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/polyfill-apcu/symfony-polyfill-apcu-v1.7.0-24c826.tar",
-                "reference": "185a98de49caaa46fa9d5cf7c1090e89a07ba103",
-                "shasum": "02452b1427f43a7c5ba25b4c51f061b914b2bc90"
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-apcu/zipball/e8ae2136ddb53dea314df56fcd88e318ab936c00",
+                "reference": "e8ae2136ddb53dea314df56fcd88e318ab936c00",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3664,6 +3675,7 @@
                     "bootstrap.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3698,9 +3710,9 @@
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-v1.7.0-5003e5.tar",
+                "url": "https://satis.sugardev.team/dist/symfony-polyfill-mbstring-v1.7.0-5003e5.tar",
                 "reference": "55d37112d1d1175375af5c5abfd95a75993aef35",
-                "shasum": "e7ad0f8f51a5309ca667c3822daaee8b78d16e16"
+                "shasum": "3d9de6d42520e9f41f02e92d7d082adc535e7a37"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3756,9 +3768,9 @@
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/polyfill-php56/symfony-polyfill-php56-v1.7.0-bd1711.tar",
+                "url": "https://satis.sugardev.team/dist/symfony-polyfill-php56-v1.7.0-bd1711.tar",
                 "reference": "156b82680dbd0e95587fb07755e052d9084b237f",
-                "shasum": "2ed01003bfa41a12c8b8b205e3729eaf1ac91ef2"
+                "shasum": "de3dae8d55f71b01946cab94db84e45131d42c3f"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -3811,9 +3823,9 @@
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/polyfill-php70/symfony-polyfill-php70-v1.7.0-b9f528.tar",
+                "url": "https://satis.sugardev.team/dist/symfony-polyfill-php70-v1.7.0-b9f528.tar",
                 "reference": "b4b2b573c650dbdc2111b34eae66e6886ce73c64",
-                "shasum": "3e0a11e3afaf3825676d856012af0624e256fdd8"
+                "shasum": "5797617c9bdf22aa7901b6546999ebd213b9b7f3"
             },
             "require": {
                 "paragonie/random_compat": "~1.0|~2.0",
@@ -3869,9 +3881,9 @@
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/polyfill-util/symfony-polyfill-util-v1.7.0-cf3659.tar",
+                "url": "https://satis.sugardev.team/dist/symfony-polyfill-util-v1.7.0-cf3659.tar",
                 "reference": "c1e5b51d53d4962d72d4b280aeece96eaf1f6d0a",
-                "shasum": "b23344395290c2bfc3421243b9cc13978d19fb64"
+                "shasum": "99014ea8d069fa0da9f4d1ea3e11b68fb2cddbc0"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -4281,9 +4293,9 @@
             },
             "dist": {
                 "type": "tar",
-                "url": "https://satis.sugardev.team/dist/symfony/twig-bridge/symfony-twig-bridge-v3.3.16-4300ff.tar",
+                "url": "https://satis.sugardev.team/dist/symfony-twig-bridge-v3.3.16-4300ff.tar",
                 "reference": "772783bd4ac38a686c1711750e47ea0a98fa1ac3",
-                "shasum": "6127e813e39eb2ad216b596a90132b2bdcdd0a57"
+                "shasum": "f861a2175221302aa4b45400be329d288a810d3b"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -5438,7 +5450,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/phpunit-php-text-template-1.2.1-638b73.tar",
                 "reference": "75aefe65c90fa77db317125ac746ed158f136c25",
-                "shasum": "55edf7bef5609c3b0a4e4338ac1fd33faad01ae4"
+                "shasum": "3c6b78e89ef8b9f1d46052c0015aeafae340c795"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -6173,7 +6185,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/sebastian-resource-operations-1.0.0-b5a241.tar",
                 "reference": "eb35907dc618089694b1c2aeef6966e4c897b3c7",
-                "shasum": "8fccb0d1bc411f239dcf05c065899f6b53c70d89"
+                "shasum": "17d9e1f7b8a15b24be91f43e2d820739d58479eb"
             },
             "require": {
                 "php": ">=5.6.0"
@@ -6214,7 +6226,7 @@
                 "type": "tar",
                 "url": "https://satis.sugardev.team/dist/sebastian-version-2.0.1-b999a9.tar",
                 "reference": "be8fddb7f814c4907bbbe3dcadee2473385d88d0",
-                "shasum": "5dc10667255ac85f6cd8e0205461b93c6d153bd6"
+                "shasum": "d8b77f949bf6f306a20e1c98d4648bad9dd8e248"
             },
             "require": {
                 "php": ">=5.6"
