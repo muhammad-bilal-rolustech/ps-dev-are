@@ -100,7 +100,7 @@
     "require": {
         "psr/log": "1.0.0",
         "ruflin/elastica" : "6.0.1",
-        "aws/aws-sdk-php": "2.7.7",
+        "aws/aws-sdk-php": "3.55.3",
         "phpmailer/phpmailer" : "v5.2.22",
         "etechnika/idna-convert" : "1.0.3",
         "ircmaxell/password-compat": "v1.0.4",
