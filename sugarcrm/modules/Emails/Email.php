@@ -2017,18 +2017,11 @@ class Email extends SugarBean {
         );
         $guid = $stmt->fetchColumn();
 
-        // Get and save the current Database Encoding setting and force it to be enabled
-        $encodeVal = $GLOBALS['db']->getEncode();
-        $GLOBALS['db']->setEncode(true);
-
         if ($guid) {
             $this->db->update($text);
         } else {
             $this->db->insert($text);
         }
-
-        // Restore previous Database Encoding setting
-        $GLOBALS['db']->setEncode($encodeVal);
     }
 
     ///////////////////////////////////////////////////////////////////////////
