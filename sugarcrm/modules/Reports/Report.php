@@ -1899,6 +1899,46 @@ class Report
         return $join;
     }
 
+    /**
+     * Applies related bean visibility to the JOIN expression instead of the query globally
+     * in order to respect the OUTER JOIN behavior
+     *
+     * @param SugarBean $bean
+     * @param string $join
+     * @param string $tableAlias
+     *
+     * @return string
+     * @throws SugarApiException
+     */
+    private function applyVisibilityToJoin(SugarBean $bean, string $join, string $tableAlias) : string
+    {
+        // instead of applying visibility to the query itself, apply it to the target table
+        if (!preg_match(
+            '/(\S+\s+' . preg_quote($tableAlias, '/') . ')\s+ON\b/im',
+            $join,
+            $matches,
+            PREG_OFFSET_CAPTURE
+        )) {
+            $this->handleException('Unable to apply visibility to ' . $tableAlias);
+        }
+
+        [$targetTableWithAlias, $pos] = $matches[1];
+
+        $filteredTargetTable = $this->addVisibilityFrom($bean, $targetTableWithAlias, $tableAlias);
+
+        // on SQL Server, only an expression with more than one table can be surrounded with parentheses
+        if (stripos($filteredTargetTable, 'join') !== false) {
+            $filteredTargetTable = '(' . $filteredTargetTable . ')';
+        }
+
+        $join = substr($join, 0, $pos)
+            . $filteredTargetTable
+            . substr($join, $pos + strlen($targetTableWithAlias));
+        $join = $this->addVisibilityWhere($bean, $join, $tableAlias);
+
+        return $join;
+    }
+
     protected function wrapIfNull($field)
     {
         $has_space = strrpos($field, " ");
