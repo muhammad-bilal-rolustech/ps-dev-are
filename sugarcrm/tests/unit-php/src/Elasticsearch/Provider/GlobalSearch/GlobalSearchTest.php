@@ -155,6 +155,18 @@ class GlobalSearchTest extends TestCase
     }
 
     /**
+     * @covers ::searchTags
+     */
+    public function testSearchTags()
+    {
+        $globalSearch = $this->getGlobalSearchMock(['getUserModules']);
+        $globalSearch->expects($this->any())
+            ->method('getUserModules')
+            ->will($this->returnValue(['Accounts', 'Leads']));
+        $this->assertEmpty($globalSearch->searchTags());
+    }
+
+    /**
      * @return \Sugarcrm\Sugarcrm\Elasticsearch\Provider\GlobalSearch\GlobalSearch
      */
     protected function getGlobalSearchMock(array $methods = null)
