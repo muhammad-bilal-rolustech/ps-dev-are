@@ -424,6 +424,34 @@ class DynamicField {
                 //Change the field to be marked as a db field instead of custom for the scope of this query
                 $fields[$name] = array_merge($field, array('source' => 'db'));
                 $hasCustomFields = true;
+                if (isset($this->bean->$name)) {
+                    if (in_array(
+                        $field['type'],
+                        array(
+                            'int', 'float', 'double', 'uint', 'ulong', 'long', 'short', 'tinyint', 'currency',
+                            'decimal')
+                    )) {
+                        if (!is_numeric($this->bean->$name)) {
+                            if ($field['required']) {
+                                $this->bean->$name = 0;
+                            } else {
+                                $this->bean->$name = null;
+                            }
+                        }
+                    }
+                    if ($field['type'] == 'bool') {
+                        if ($this->bean->$name === false) {
+                            $this->bean->$name = '0';
+                        } elseif ($this->bean->$name === true) {
+                            $this->bean->$name = '1';
+                        }
+                    }
+
+                    if (($field['type'] == 'date' || $field['type'] == 'datetimecombo')
+                        && (empty($this->bean->$name) || $this->bean->$name == '1900-01-01')) {
+                        $this->bean->$name = ''; // do not set it to string 'NULL'
+                    }
+                }
                 $values[$name] = $this->bean->$name;
             }
             if (!$hasCustomFields) {
