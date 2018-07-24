@@ -3469,7 +3469,7 @@ class SugarBean
             $this->retrieve_erased_fields = true;
         }
 
-        if ($this->queryProducesDuplicates($query)) {
+        if ($this->queryProducesDuplicates($query) && empty($options['skipFixQuery'])) {
             $this->fixQuery($query);
         }
 
